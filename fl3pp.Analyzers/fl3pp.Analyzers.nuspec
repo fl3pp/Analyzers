@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>fl3pp.Analyzers</id>
+        <version>0.0.1</version>
+        <description>A collection of various analyzers.</description>
+        <authors>fl3pp</authors>
+        <license type="expression">MIT</license>
+        <readme>docs\readme.md</readme>
+    </metadata>
+    <files>
+        <file src="..\readme.md" target="docs\" />
+        <file src="bin\fl3pp.Analyzers\release\fl3pp.Analyzers.dll"
+              target="analyzers\dotnet\cs"
+              exclude="**\Microsoft.CodeAnalysis.*;**\System.Collections.Immutable.*;**\System.Reflection.Metadata.*;**\System.Composition.*" />
+    </files>
+    <!-- Optional 'files' node -->
+</package>
