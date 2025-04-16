@@ -8,7 +8,7 @@ A collection of analyzers I wished existed but didn't yet.
 To install the analyzers, add the NuGet package to your `.csproj`:
 
 ```xml
-<PackageReference Include="fl3pp.Analyzers" Version="0.0.1" />
+<PackageReference Include="fl3pp.Analyzers" Version="0.0.1" PrivateAssets="all" />
 ```
 
 Note that all analyzers are disabled by default. You'll have to enable the ones you need in your [`.editorconfig`](https://learn.microsoft.com/en-us/visualstudio/code-quality/use-roslyn-analyzers?view=vs-2022#set-rule-severity-in-an-editorconfig-file) file.
