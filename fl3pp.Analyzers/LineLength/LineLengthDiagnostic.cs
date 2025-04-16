@@ -16,5 +16,5 @@ internal static class LineLengthDiagnostic
         defaultSeverity: DiagnosticSeverity.Warning,
         isEnabledByDefault: true,
         description: "Enforces a maximum line length.",
-        helpLinkUri: "https://github.com/fl3pp/Analyzers##fl30001-maximum-line-length-exceeded");
+        helpLinkUri: "https://github.com/fl3pp/Analyzers#fl30001-maximum-line-length-exceeded");
 }

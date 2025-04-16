@@ -7,6 +7,7 @@
         <authors>fl3pp</authors>
         <license type="expression">MIT</license>
         <readme>docs\readme.md</readme>
+        <projectUrl>https://github.com/fl3pp/Analyzers</projectUrl>
     </metadata>
     <files>
         <file src="..\readme.md" target="docs\" />

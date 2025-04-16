@@ -6,7 +6,7 @@ A collection of analyzers I wished existed but didn't yet.
 
 To install the analyzers, add the NuGet package to your `.csproj`:
 
-```
+```xml
 <PackageReference Include="fl3pp.Analyzers" Version="0.0.1" />
 ```
 
