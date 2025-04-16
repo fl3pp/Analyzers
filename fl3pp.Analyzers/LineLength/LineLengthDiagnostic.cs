@@ -14,7 +14,7 @@ internal static class LineLengthDiagnostic
         messageFormat: "Line {0} is {1} characters longer than allowed.",
         category: "Formatting",
         defaultSeverity: DiagnosticSeverity.Warning,
-        isEnabledByDefault: true,
+        isEnabledByDefault: false,
         description: "Enforces a maximum line length.",
         helpLinkUri: "https://github.com/fl3pp/Analyzers#fl30001-maximum-line-length-exceeded");
 }
