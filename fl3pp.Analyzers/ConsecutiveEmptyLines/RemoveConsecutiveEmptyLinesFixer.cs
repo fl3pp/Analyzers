@@ -23,7 +23,7 @@ public sealed class RemoveConsecutiveEmptyLinesFixer : CodeFixProvider
             ConsecutiveEmptyLinesDiagnostic.RemoveConsecutiveEmptyLinesFixTitle,
             async ct =>
             {
-                var withoutEmptyLines = await TextActions.RemoveTriviaInSpan(context.Document, spanToDelete, ct);
+                var withoutEmptyLines = await TriviaCodeActions.RemoveTriviaInSpan(context.Document, spanToDelete, ct);
                 return withoutEmptyLines;
             },
             ConsecutiveEmptyLinesDiagnostic.RemoveConsecutiveEmptyLinesFixTitle),

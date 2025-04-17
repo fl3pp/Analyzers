@@ -5,7 +5,7 @@ using Microsoft.CodeAnalysis.Text;
 
 namespace fl3pp.Analyzers.Helpers;
 
-internal static class TextActions
+internal static class TriviaCodeActions
 {
     public static async Task<Document> RemoveTriviaInSpan(Document current, TextSpan spanToDelete, CancellationToken ct)
     {

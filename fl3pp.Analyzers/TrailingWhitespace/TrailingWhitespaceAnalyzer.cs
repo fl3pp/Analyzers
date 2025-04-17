@@ -6,6 +6,7 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
+using Microsoft.CodeAnalysis.Text;
 
 namespace fl3pp.Analyzers.TrailingWhitespace;
 
@@ -28,21 +29,26 @@ public sealed class TrailingWhitespaceAnalyzer : DiagnosticAnalyzer
 
         var text = context.Node.SyntaxTree.GetText();
 
-        foreach (var line in context.Node.SyntaxTree.GetText().Lines)
+        foreach (var line in text.Lines)
         {
-            int trailingWhitespaceLength = 0;
+            if (line.Span.Length == 0) continue;
             
-            while (line.End != line.Start
-                && text.ToString(new(line.End - trailingWhitespaceLength - 1, 1))[0].IsWhitespace())
+            var endOfLine = text.EnumerateTextCharactersReverse(line.Span).First();
+            var endOfTrailingWhitespace = endOfLine;
+            
+            if (!endOfLine.Character.IsWhitespace()) continue;
+            
+            while (
+                endOfTrailingWhitespace.Previous() is { } nextEndOfTrailingWhitespace
+                && nextEndOfTrailingWhitespace.Index >= line.Span.Start
+                && nextEndOfTrailingWhitespace.Character.IsWhitespace())
             {
-                trailingWhitespaceLength++;
+                endOfTrailingWhitespace = nextEndOfTrailingWhitespace;
             }
-
-            if (trailingWhitespaceLength == 0) continue;
  
             context.ReportDiagnostic(Diagnostic.Create(
                 TrailingWhitespaceDiagnostic.Descriptor,
-                Location.Create(node.SyntaxTree, new(line.End - trailingWhitespaceLength, trailingWhitespaceLength)),
+                Location.Create(node.SyntaxTree, TextSpan.FromBounds(endOfTrailingWhitespace.Index, line.Span.End)),
                 line.LineNumber + 1));
         }
     }

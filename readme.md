@@ -1,6 +1,6 @@
 # fl3pp.Analyzers
 
-A collection of analyzers I wished existed but didn't yet.
+A collection of analyzers I wished existed but didn't yet (or did, but in a form that I didn't like).
 
 ## Installation
 
@@ -47,6 +47,18 @@ Warns if two or more consecutive line are empty.
 ```editorconfig
 [*.cs]
 dotnet_diagnostic.FL30003.severity = warning # default: none
+```
+
+Available fixes:
+- Remove empty lines
+
+## `FL30004`: Empty lines between matching consecutive braces
+
+Warns if one or more empty lines are placed between two matching consecutive braces.
+
+```editorconfig
+[*.cs]
+dotnet_diagnostic.FL30004.severity = warning # default: none
 ```
 
 Available fixes:

@@ -28,8 +28,7 @@ public sealed class ConsecutiveEmptyLinesAnalyzer : DiagnosticAnalyzer
         var text = context.Node.SyntaxTree.GetText();
  
         var emptyLines = text.Lines
-            .Where(line => line.Span.Length == 0
-                || text.ToString(line.Span).All(t => t.IsWhitespace()))
+            .Where(line => text.EnumerateTextCharacters(line.Span).All(t => t.Character.IsWhitespace()))
             .ToArray();
 
         if (emptyLines.Length == 0) return;

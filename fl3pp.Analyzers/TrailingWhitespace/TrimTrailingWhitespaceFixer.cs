@@ -21,7 +21,7 @@ public sealed class TrimTrailingWhitespaceFixer : CodeFixProvider
 
         context.RegisterCodeFix(CodeAction.Create(
             TrailingWhitespaceDiagnostic.TrimTrailingWhitespaceFixTitle,
-            ct => TextActions.RemoveTriviaInSpan(context.Document, spanToDelete, ct),
+            ct => TriviaCodeActions.RemoveTriviaInSpan(context.Document, spanToDelete, ct),
             equivalenceKey: TrailingWhitespaceDiagnostic.TrimTrailingWhitespaceFixTitle),
             diagnostic);
  
