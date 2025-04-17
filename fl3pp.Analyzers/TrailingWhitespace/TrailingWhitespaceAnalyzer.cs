@@ -1,5 +1,6 @@
 using System.Collections.Immutable;
 using System.Globalization;
+using fl3pp.Analyzers.Helpers;
 using fl3pp.Analyzers.LineLength;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -32,8 +33,7 @@ public sealed class TrailingWhitespaceAnalyzer : DiagnosticAnalyzer
             int trailingWhitespaceLength = 0;
             
             while (line.End != line.Start
-                && TrailingWhitespaceDiagnostic.WhitespaceChars.Contains(
-                    text.ToString(new(line.End - trailingWhitespaceLength - 1, 1))[0]))
+                && text.ToString(new(line.End - trailingWhitespaceLength - 1, 1))[0].IsWhitespace())
             {
                 trailingWhitespaceLength++;
             }

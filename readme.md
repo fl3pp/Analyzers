@@ -2,7 +2,6 @@
 
 A collection of analyzers I wished existed but didn't yet.
 
-
 ## Installation
 
 To install the analyzers, add the NuGet package to your `.csproj`:
@@ -14,7 +13,6 @@ To install the analyzers, add the NuGet package to your `.csproj`:
 Note that all analyzers are disabled by default. You'll have to enable the ones you need in your [`.editorconfig`](https://learn.microsoft.com/en-us/visualstudio/code-quality/use-roslyn-analyzers?view=vs-2022#set-rule-severity-in-an-editorconfig-file) file.
 
 Use a [`Directory.Build.props`](https://learn.microsoft.com/en-us/visualstudio/msbuild/customize-by-directory?view=vs-2022#directorybuildprops-and-directorybuildtargets) to enable the analyzers for all projects in a directory.
-
 
 ## `FL30001`: Maximum line length exceeded
 
@@ -40,4 +38,16 @@ dotnet_diagnostic.FL30002.severity = warning # default: none
 ```
 
 Available fixes:
-- Remove trailing whitespace.
+- Trim trailing whitespace
+
+## `FL30003`: Consecutive empty lines
+
+Warns if two or more consecutive line are empty. 
+
+```editorconfig
+[*.cs]
+dotnet_diagnostic.FL30003.severity = warning # default: none
+```
+
+Available fixes:
+- Remove empty lines

@@ -1,3 +1,4 @@
-[*.cs]
+root = true
 
+[*.cs]
 dotnet_diagnostic.FL30002.severity = warning

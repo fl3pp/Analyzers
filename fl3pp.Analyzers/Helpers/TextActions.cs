@@ -1,27 +1,15 @@
-using System.Collections.Immutable;
 using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CodeActions;
-using Microsoft.CodeAnalysis.CodeFixes;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.Editing;
 using Microsoft.CodeAnalysis.Text;
 
-namespace fl3pp.Analyzers.TrailingWhitespace;
+namespace fl3pp.Analyzers.Helpers;
 
-[ExportCodeFixProvider(LanguageNames.CSharp)]
-public sealed class TrailingWhitespaceFixer : CodeFixProvider
+internal static class TextActions
 {
-    public override ImmutableArray<string> FixableDiagnosticIds { get; } =
-        ImmutableArray.Create(TrailingWhitespaceDiagnostic.Descriptor.Id);
-    
-    public override FixAllProvider GetFixAllProvider() => WellKnownFixAllProviders.BatchFixer;
-    
-    public override async Task RegisterCodeFixesAsync(CodeFixContext context)
+    public static async Task<Document> RemoveTriviaInSpan(Document current, TextSpan spanToDelete, CancellationToken ct)
     {
-        var diagnostic = context.Diagnostics[0];
-        var spanToDelete = diagnostic.Location.SourceSpan;
-
-        var editor = await DocumentEditor.CreateAsync(context.Document, context.CancellationToken);
+        var editor = await DocumentEditor.CreateAsync(current, ct);
         
         var triviaGroups = editor.OriginalRoot
             .DescendantTrivia(spanToDelete)
@@ -69,10 +57,7 @@ public sealed class TrailingWhitespaceFixer : CodeFixProvider
             editor.ReplaceNode(node, replacements.Aggregate(node, (cur, replacement) =>
                 cur.ReplaceToken(replacement.Old, replacement.New)));
         }
-        
-        context.RegisterCodeFix(CodeAction.Create(
-            "Remove trailing whitespace",
-            _ => Task.FromResult(editor.GetChangedDocument())),
-            diagnostic);
+
+        return editor.GetChangedDocument();
     }
 }

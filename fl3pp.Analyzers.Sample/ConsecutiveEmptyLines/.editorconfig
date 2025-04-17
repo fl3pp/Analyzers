@@ -1,0 +1,3 @@
+root = true
+[*.cs]
+dotnet_diagnostic.FL30003.severity = warning

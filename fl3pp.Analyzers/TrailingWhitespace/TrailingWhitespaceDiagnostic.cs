@@ -4,8 +4,6 @@ namespace fl3pp.Analyzers.TrailingWhitespace;
 
 internal static class TrailingWhitespaceDiagnostic
 {
-    public static readonly IReadOnlyCollection<char> WhitespaceChars = new HashSet<char> { ' ', '\t' };
- 
     public static DiagnosticDescriptor Descriptor { get; } = new(
         id: "FL30002",
         title: "Trailing whitespace",
@@ -15,4 +13,6 @@ internal static class TrailingWhitespaceDiagnostic
         isEnabledByDefault: false,
         description: "Ensures that lines do not have trailing whitespace.",
         helpLinkUri: "https://github.com/fl3pp/Analyzers#fl30002-trailing-whitespace");
+    
+    public const string TrimTrailingWhitespaceFixTitle = "Trim trailing whitespace";
 }

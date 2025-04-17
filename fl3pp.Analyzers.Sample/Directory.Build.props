@@ -1,7 +1,0 @@
-<Project>
-    <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../'))" />
-    
-    <ItemGroup>
-        <PackageVersion Include="fl3pp.Analyzers" Version="1.0.0" />
-    </ItemGroup>
-</Project>
