@@ -27,3 +27,17 @@ max_line_length = 100 # default: 120
 ```
 
 The `max_line_length` option can be set to any positive integer. If not value is set, the `guidelines` option is used instead (for compatibility with the [EditorGuidelines](https://marketplace.visualstudio.com/items?itemName=PaulHarrington.EditorGuidelines) VS Extension). If no value can be found, a default value of `120` is used.
+
+Available fixes: _none_
+
+## `FL30002`: Trailing whitespace
+
+Warns if a line contains trailing whitespace.
+
+```editorconfig
+[*.cs]
+dotnet_diagnostic.FL30002.severity = warning # default: none
+```
+
+Available fixes:
+- Remove trailing whitespace.

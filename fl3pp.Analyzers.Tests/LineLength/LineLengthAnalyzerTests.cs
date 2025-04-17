@@ -1,4 +1,3 @@
-using Microsoft.CodeAnalysis;
 using AnalyzerTest = Microsoft.CodeAnalysis.CSharp.Testing.CSharpAnalyzerTest<
     fl3pp.Analyzers.LineLength.LineLengthAnalyzer,
     Microsoft.CodeAnalysis.Testing.DefaultVerifier>;
