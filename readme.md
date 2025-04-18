@@ -56,7 +56,7 @@ class Test
 
 __Available Fixes__: _None_
 
-## `FL30002`: Trailing whitespace
+### `FL30002`: Trailing whitespace
 
 Warns if a line contains trailing whitespace.
 
@@ -83,7 +83,7 @@ class Test
 
 __Available Fixes__: Trim trailing whitespace
 
-## `FL30003`: Consecutive empty lines
+### `FL30003`: Consecutive empty lines
 
 Warns if two or more consecutive line are empty. 
 
@@ -112,7 +112,7 @@ class Test
 
 __Available Fixes__: Remove consecutive empty lines
 
-## `FL30004`: Empty lines between matching consecutive braces
+### `FL30004`: Empty lines between matching consecutive braces
 
 Warns if one or more empty lines are placed between two matching consecutive braces.
 
