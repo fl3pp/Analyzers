@@ -105,4 +105,66 @@ public sealed class EmptyLineBetweenMatchingBracketsTests
         
         await test.RunAsync();
     }
+    
+    [Fact]
+    public async Task AnalyzeAndFix_EmptyLineBetweenClosingParenthesis_ReportsDiagnosticAndRemovesLine()
+    {
+        var test = new TestScenario();
+        test.TestCode =
+            """
+            class test
+            {
+                int a = ((1)
+                
+                );
+            }
+            """;
+        
+        test.ExpectedDiagnostics.Add(Verifier.Diagnostic()
+            .WithSpan(3, 17, 5, 1).WithArguments("4", ")"));
+        test.FixedCode =
+            """
+            class test
+            {
+                int a = ((1)
+                );
+            }
+            """;
+        
+        await test.RunAsync();
+    }
+    
+    [Fact]
+    public async Task AnalyzeAndFix_EmptyLineBetweenCoEndOfCodeBlockAndMethodEnd_ReportsDiagnosticAndRemovesLine()
+    {
+        var test = new TestScenario();
+        test.TestCode =
+            """
+            class test
+            {
+                void Method()
+                {
+                    {
+                    }
+                    
+                }
+            }
+            """;
+        
+        test.ExpectedDiagnostics.Add(Verifier.Diagnostic()
+            .WithSpan(6, 10, 8, 1).WithArguments("7", "}"));
+        test.FixedCode =
+            """
+            class test
+            {
+                void Method()
+                {
+                    {
+                    }
+                }
+            }
+            """;
+        
+        await test.RunAsync();
+    }
 }
