@@ -4,9 +4,5 @@ public class EmptyLineBetweenMatchingBrackets
 {
     public void Method()
     {
- 
     }
-    
-    
-    
 }

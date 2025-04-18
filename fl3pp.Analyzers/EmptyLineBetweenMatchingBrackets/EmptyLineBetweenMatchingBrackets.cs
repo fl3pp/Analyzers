@@ -8,7 +8,7 @@ using Microsoft.CodeAnalysis.Text;
 namespace fl3pp.Analyzers.EmptyLineBetweenMatchingBrackets;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public sealed class EmptyLineBetweenMatchingBracketsAnalyzer : DiagnosticAnalyzer
+public sealed class EmptyLineBetweenMatchingBrackets : DiagnosticAnalyzer
 {
     private static readonly char[] s_bracketChars = [ '(', ')', '{', '}', '[', ']', '<', '>' ];
  
@@ -30,20 +30,21 @@ public sealed class EmptyLineBetweenMatchingBracketsAnalyzer : DiagnosticAnalyze
             .Select(line => new
             {
                 TextLine = line,
-                StartingBracket = GetFirstBracket(text.EnumerateTextCharacters(line.Span)),
-                EndingBracket = GetFirstBracket(text.EnumerateTextCharactersReverse(line.Span)),
+                LeadingBracket = GetLeadingBracketOrNull(text.EnumerateTextCharacters(line.Span)),
+                ClosingBracket = GetLeadingBracketOrNull(text.EnumerateTextCharactersReverse(line.Span)),
             })
             .ToArray();
         
-        TextCharacter? GetFirstBracket(IEnumerable<TextCharacter> characters) => characters
+        TextCharacter? GetLeadingBracketOrNull(IEnumerable<TextCharacter> characters) => characters
             .SkipWhile(textCharacter => textCharacter.Character.IsWhitespace())
+            .Take(1)
             .Where(textCharacter => s_bracketChars.Contains(textCharacter.Character))
             .Cast<TextCharacter?>()
             .FirstOrDefault();
  
         foreach (var lineToCheck in bracketLines)
         {
-            if (lineToCheck.EndingBracket is null) continue;
+            if (lineToCheck.ClosingBracket is null) continue;
 
             var nextNonEmptyLine = bracketLines
                 .Skip(lineToCheck.TextLine.LineNumber + 1)
@@ -51,19 +52,19 @@ public sealed class EmptyLineBetweenMatchingBracketsAnalyzer : DiagnosticAnalyze
                     .All(c => c.Character.IsWhitespace()))
                 .FirstOrDefault();
             
-            if (nextNonEmptyLine?.StartingBracket is null) continue;
+            if (nextNonEmptyLine?.LeadingBracket is null) continue;
+            
+            if (nextNonEmptyLine.TextLine.LineNumber - lineToCheck.TextLine.LineNumber == 1) continue;
  
-            if (nextNonEmptyLine.StartingBracket.Value.Character != lineToCheck.EndingBracket.Value.Character) continue;
+            if (nextNonEmptyLine.LeadingBracket.Value.Character != lineToCheck.ClosingBracket.Value.Character) continue;
             
             context.ReportDiagnostic(Diagnostic.Create(
-                EmptyLineBetweenMatchingBracketsDiagnostic.Descriptor,
-                Location.Create(
+                descriptor:EmptyLineBetweenMatchingBracketsDiagnostic.Descriptor,
+                location:Location.Create(
                     context.Node.SyntaxTree,
-                    TextSpan.FromBounds(
-                        lineToCheck.TextLine.Span.End,
-                        nextNonEmptyLine.TextLine.Span.Start)),
-                lineToCheck.TextLine.LineNumber + 2,
-                lineToCheck.EndingBracket.Value.Character));
+                    TextSpan.FromBounds(lineToCheck.TextLine.Span.End, nextNonEmptyLine.TextLine.Span.Start)),
+                properties: ImmutableDictionary<string, string?>.Empty,
+                messageArgs: [lineToCheck.TextLine.LineNumber + 2, lineToCheck.ClosingBracket.Value.Character]));
         }
     }
 }

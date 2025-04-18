@@ -13,4 +13,6 @@ internal static class EmptyLineBetweenMatchingBracketsDiagnostic
         isEnabledByDefault: false,
         description: "Ensure there is an empty line between matching braces.",
         helpLinkUri: "https://github.com/fl3pp/Analyzers#fl30004-empty-line-between-matching-consecutive-braces");
+    
+    public const string RemoveEmptyLineBetweenMatchingBracketsFixTitle = "Remove empty lines between matching braces";
 }

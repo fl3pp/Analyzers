@@ -7,7 +7,7 @@ using Microsoft.CodeAnalysis.CodeFixes;
 namespace fl3pp.Analyzers.TrailingWhitespace;
 
 [ExportCodeFixProvider(LanguageNames.CSharp)]
-public sealed class TrimTrailingWhitespaceFixer : CodeFixProvider
+public sealed class TrailingWhitespace : CodeFixProvider
 {
     public override ImmutableArray<string> FixableDiagnosticIds { get; } =
         ImmutableArray.Create(TrailingWhitespaceDiagnostic.Descriptor.Id);

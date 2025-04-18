@@ -9,7 +9,7 @@ using Microsoft.CodeAnalysis.Text;
 namespace fl3pp.Analyzers.ConsecutiveEmptyLines;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public sealed class ConsecutiveEmptyLinesAnalyzer : DiagnosticAnalyzer
+public sealed class ConsecutiveEmptyLines : DiagnosticAnalyzer
 {
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } =
         ImmutableArray.Create(ConsecutiveEmptyLinesDiagnostic.Descriptor);
@@ -48,14 +48,14 @@ public sealed class ConsecutiveEmptyLinesAnalyzer : DiagnosticAnalyzer
         {
             var firstLine = diagnostic.First();
             var lastLine = diagnostic.Last();
-            
+
             context.ReportDiagnostic(Diagnostic.Create(
-                ConsecutiveEmptyLinesDiagnostic.Descriptor,
-                Location.Create(
+                descriptor: ConsecutiveEmptyLinesDiagnostic.Descriptor,
+                location: Location.Create(
                     node.SyntaxTree,
                     TextSpan.FromBounds(firstLine.Span.Start, lastLine.Span.End)),
-                firstLine.LineNumber + 1,
-                lastLine.LineNumber + 1));
+                properties: ImmutableDictionary<string, string?>.Empty,
+                messageArgs: [firstLine.LineNumber + 1, lastLine.LineNumber + 1]));
         }
     }
 }

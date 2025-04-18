@@ -1,18 +1,18 @@
-using AnalyzerTest = Microsoft.CodeAnalysis.CSharp.Testing.CSharpAnalyzerTest<
+using TestScenario = Microsoft.CodeAnalysis.CSharp.Testing.CSharpAnalyzerTest<
     fl3pp.Analyzers.LineLength.LineLengthAnalyzer,
     Microsoft.CodeAnalysis.Testing.DefaultVerifier>;
-using AnalyzerVerifier = Microsoft.CodeAnalysis.CSharp.Testing.CSharpAnalyzerVerifier<
+using Verifier = Microsoft.CodeAnalysis.CSharp.Testing.CSharpAnalyzerVerifier<
     fl3pp.Analyzers.LineLength.LineLengthAnalyzer,
     Microsoft.CodeAnalysis.Testing.DefaultVerifier>;
 
-namespace fl3pp.Analyzers.Tests.LineLength;
+namespace fl3pp.Analyzers.Tests;
 
 public sealed class LineLengthAnalyzerTest
 {
     [Fact]
     public async Task Analyze_NoMaxLengthAnd120LongLine_NotReportsDiagnostic()
     {
-        var test = new AnalyzerTest();
+        var test = new TestScenario();
         test.TestCode =
             """
             class Test
@@ -27,7 +27,7 @@ public sealed class LineLengthAnalyzerTest
     [Fact]
     public async Task Analyze_NoMaxLengthAnd121LongLine_ReportsDiagnostic()
     {
-        var test = new AnalyzerTest();
+        var test = new TestScenario();
         test.TestCode =
             """
             class Test
@@ -36,7 +36,7 @@ public sealed class LineLengthAnalyzerTest
             }
             """;
         
-        test.ExpectedDiagnostics.Add(AnalyzerVerifier.Diagnostic()
+        test.ExpectedDiagnostics.Add(Verifier.Diagnostic()
             .WithSpan(3, 121, 3, 122).WithArguments("3", "1"));
  
         await test.RunAsync();
@@ -45,7 +45,7 @@ public sealed class LineLengthAnalyzerTest
     [Fact]
     public async Task Analyze_MaxLengthOf200And200LongLine_NotReportsDiagnostic()
     {
-        var test = new AnalyzerTest();
+        var test = new TestScenario();
         test.TestState.AnalyzerConfigFiles.Add(("/.editorconfig",
             """
             [*.cs]
@@ -65,7 +65,7 @@ public sealed class LineLengthAnalyzerTest
     [Fact]
     public async Task Analyze_MaxLengthOf100And101LongLine_ReportsDiagnostic()
     {
-        var test = new AnalyzerTest();
+        var test = new TestScenario();
         test.TestState.AnalyzerConfigFiles.Add(("/.editorconfig",
             """
             [*.cs]
@@ -79,7 +79,7 @@ public sealed class LineLengthAnalyzerTest
             }
             """;
         
-        test.ExpectedDiagnostics.Add(AnalyzerVerifier.Diagnostic()
+        test.ExpectedDiagnostics.Add(Verifier.Diagnostic()
             .WithSpan(3, 101, 3, 102).WithArguments("3", "1"));
  
         await test.RunAsync();
@@ -88,7 +88,7 @@ public sealed class LineLengthAnalyzerTest
     [Fact]
     public async Task Analyze_GuidelineOf200And200LongLine_NotReportsDiagnostic()
     {
-        var test = new AnalyzerTest();
+        var test = new TestScenario();
         test.TestState.AnalyzerConfigFiles.Add(("/.editorconfig",
             """
             [*.cs]
@@ -108,7 +108,7 @@ public sealed class LineLengthAnalyzerTest
     [Fact]
     public async Task Analyze_GuidelineMaxLengthOf100And101LongLine_ReportsDiagnostic()
     {
-        var test = new AnalyzerTest();
+        var test = new TestScenario();
         test.TestState.AnalyzerConfigFiles.Add(("/.editorconfig",
             """
             [*.cs]
@@ -122,7 +122,7 @@ public sealed class LineLengthAnalyzerTest
             }
             """;
         
-        test.ExpectedDiagnostics.Add(AnalyzerVerifier.Diagnostic()
+        test.ExpectedDiagnostics.Add(Verifier.Diagnostic()
             .WithSpan(3, 101, 3, 102).WithArguments("3", "1"));
  
         await test.RunAsync();
@@ -131,7 +131,7 @@ public sealed class LineLengthAnalyzerTest
     [Fact]
     public async Task Analyze_GuidelineMaxLengthOf20AndMaxLineLengthOf100And100LongLine_NotReportsDiagnostic()
     {
-        var test = new AnalyzerTest();
+        var test = new TestScenario();
         test.TestState.AnalyzerConfigFiles.Add(("/.editorconfig",
             """
             [*.cs]
@@ -151,7 +151,7 @@ public sealed class LineLengthAnalyzerTest
     [Fact]
     public async Task Analyze_GuidelineMaxLengthOf100AndMaxLineLengthOf20And20LongLine_NotReportsDiagnostic()
     {
-        var test = new AnalyzerTest();
+        var test = new TestScenario();
         test.TestState.AnalyzerConfigFiles.Add(("/.editorconfig",
             """
             [*.cs]
@@ -171,7 +171,7 @@ public sealed class LineLengthAnalyzerTest
     [Fact]
     public async Task Analyze_MaxLengthSetForDifferentFile_NotReportsDiagnostic()
     {
-        var test = new AnalyzerTest();
+        var test = new TestScenario();
         test.TestState.AnalyzerConfigFiles.Add(("/.editorconfig",
             """
             [test/*.cs]
@@ -191,7 +191,7 @@ public sealed class LineLengthAnalyzerTest
     [Fact]
     public async Task Analyze_MaxLengthSetToNegativeValueAnd121LongLing_ReportsDiagnostic()
     {
-        var test = new AnalyzerTest();
+        var test = new TestScenario();
         test.TestState.AnalyzerConfigFiles.Add(("/.editorconfig",
             """
             [*.cs]
@@ -205,7 +205,7 @@ public sealed class LineLengthAnalyzerTest
             }
             """;
         
-        test.ExpectedDiagnostics.Add(AnalyzerVerifier.Diagnostic()
+        test.ExpectedDiagnostics.Add(Verifier.Diagnostic()
             .WithSpan(3, 121, 3, 122).WithArguments("3", "1"));
  
         await test.RunAsync();
