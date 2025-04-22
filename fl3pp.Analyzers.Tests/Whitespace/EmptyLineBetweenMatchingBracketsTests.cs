@@ -1,13 +1,13 @@
 using TestScenario = Microsoft.CodeAnalysis.CSharp.Testing.CSharpCodeFixTest<
-    fl3pp.Analyzers.EmptyLineBetweenMatchingBrackets.EmptyLineBetweenMatchingBrackets,
-    fl3pp.Analyzers.EmptyLineBetweenMatchingBrackets.RemoveEmptyLineBetweenMatchingBracketsFixer,
+    fl3pp.Analyzers.Whitespace.EmptyLineBetweenMatchingBrackets.EmptyLineBetweenMatchingBrackets,
+    fl3pp.Analyzers.Whitespace.EmptyLineBetweenMatchingBrackets.RemoveEmptyLineBetweenMatchingBracketsFixer,
     Microsoft.CodeAnalysis.Testing.DefaultVerifier>;
 using Verifier = Microsoft.CodeAnalysis.CSharp.Testing.CSharpCodeFixVerifier<
-    fl3pp.Analyzers.EmptyLineBetweenMatchingBrackets.EmptyLineBetweenMatchingBrackets,
-    fl3pp.Analyzers.EmptyLineBetweenMatchingBrackets.RemoveEmptyLineBetweenMatchingBracketsFixer,
+    fl3pp.Analyzers.Whitespace.EmptyLineBetweenMatchingBrackets.EmptyLineBetweenMatchingBrackets,
+    fl3pp.Analyzers.Whitespace.EmptyLineBetweenMatchingBrackets.RemoveEmptyLineBetweenMatchingBracketsFixer,
     Microsoft.CodeAnalysis.Testing.DefaultVerifier>;
 
-namespace fl3pp.Analyzers.Tests;
+namespace fl3pp.Analyzers.Tests.Whitespace;
 
 public sealed class EmptyLineBetweenMatchingBracketsTests
 {

@@ -1,4 +1,4 @@
-﻿namespace fl3pp.Analyzers.Sample.LineLength;
+﻿namespace fl3pp.Analyzers.Sample.Whitespace.LineLength;
 
 public class Class1
 {

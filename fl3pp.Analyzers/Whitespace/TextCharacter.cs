@@ -1,6 +1,6 @@
 using Microsoft.CodeAnalysis.Text;
 
-namespace fl3pp.Analyzers.Helpers;
+namespace fl3pp.Analyzers.Whitespace;
 
 internal record struct TextCharacter(int Index, char Character, SourceText SourceText)
 {

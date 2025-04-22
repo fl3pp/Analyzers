@@ -1,6 +1,6 @@
 using Microsoft.CodeAnalysis;
 
-namespace fl3pp.Analyzers.TrailingWhitespace;
+namespace fl3pp.Analyzers.Whitespace.TrailingWhitespace;
 
 internal static class TrailingWhitespaceDiagnostic
 {

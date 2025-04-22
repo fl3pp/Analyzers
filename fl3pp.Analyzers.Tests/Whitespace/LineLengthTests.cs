@@ -1,11 +1,11 @@
 using TestScenario = Microsoft.CodeAnalysis.CSharp.Testing.CSharpAnalyzerTest<
-    fl3pp.Analyzers.LineLength.LineLengthAnalyzer,
+    fl3pp.Analyzers.Whitespace.LineLength.LineLengthAnalyzer,
     Microsoft.CodeAnalysis.Testing.DefaultVerifier>;
 using Verifier = Microsoft.CodeAnalysis.CSharp.Testing.CSharpAnalyzerVerifier<
-    fl3pp.Analyzers.LineLength.LineLengthAnalyzer,
+    fl3pp.Analyzers.Whitespace.LineLength.LineLengthAnalyzer,
     Microsoft.CodeAnalysis.Testing.DefaultVerifier>;
 
-namespace fl3pp.Analyzers.Tests;
+namespace fl3pp.Analyzers.Tests.Whitespace;
 
 public sealed class LineLengthAnalyzerTest
 {

@@ -1,6 +1,6 @@
 using Microsoft.CodeAnalysis;
 
-namespace fl3pp.Analyzers.LineLength;
+namespace fl3pp.Analyzers.Whitespace.LineLength;
 
 internal static class LineLengthDiagnostic
 {

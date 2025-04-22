@@ -1,10 +1,9 @@
 using System.Collections.Immutable;
-using fl3pp.Analyzers.Helpers;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CodeActions;
 using Microsoft.CodeAnalysis.CodeFixes;
 
-namespace fl3pp.Analyzers.ConsecutiveEmptyLines;
+namespace fl3pp.Analyzers.Whitespace.ConsecutiveEmptyLines;
 
 [ExportCodeFixProvider(LanguageNames.CSharp)]
 public sealed class RemoveConsecutiveEmptyLinesFixer : CodeFixProvider

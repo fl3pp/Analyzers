@@ -1,11 +1,10 @@
 using System.Collections.Immutable;
-using fl3pp.Analyzers.Helpers;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.CodeAnalysis.Text;
 
-namespace fl3pp.Analyzers.EmptyLineBetweenMatchingBrackets;
+namespace fl3pp.Analyzers.Whitespace.EmptyLineBetweenMatchingBrackets;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
 public sealed class EmptyLineBetweenMatchingBrackets : DiagnosticAnalyzer

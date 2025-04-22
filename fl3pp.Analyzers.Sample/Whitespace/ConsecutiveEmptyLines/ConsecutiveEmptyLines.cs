@@ -1,4 +1,4 @@
-namespace fl3pp.Analyzers.Sample.ConsecutiveEmptyLines;
+namespace fl3pp.Analyzers.Sample.Whitespace.ConsecutiveEmptyLines;
 
 public class ConsecutiveEmptyLines
 {

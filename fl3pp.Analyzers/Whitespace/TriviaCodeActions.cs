@@ -3,7 +3,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.Editing;
 using Microsoft.CodeAnalysis.Text;
 
-namespace fl3pp.Analyzers.Helpers;
+namespace fl3pp.Analyzers.Whitespace;
 
 internal static class TriviaCodeActions
 {

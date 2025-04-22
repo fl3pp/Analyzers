@@ -1,4 +1,4 @@
-namespace fl3pp.Analyzers.Helpers;
+namespace fl3pp.Analyzers.Whitespace;
 
 public static class Whitespace
 {

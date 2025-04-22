@@ -1,14 +1,11 @@
 using System.Collections.Immutable;
-using System.Globalization;
-using fl3pp.Analyzers.Helpers;
-using fl3pp.Analyzers.LineLength;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.CodeAnalysis.Text;
 
-namespace fl3pp.Analyzers.TrailingWhitespace;
+namespace fl3pp.Analyzers.Whitespace.TrailingWhitespace;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
 public sealed class TrailingWhitespaceAnalyzer : DiagnosticAnalyzer

@@ -1,6 +1,6 @@
 using Microsoft.CodeAnalysis;
 
-namespace fl3pp.Analyzers.EmptyLineBetweenMatchingBrackets;
+namespace fl3pp.Analyzers.Whitespace.EmptyLineBetweenMatchingBrackets;
 
 internal static class EmptyLineBetweenMatchingBracketsDiagnostic
 {

@@ -1,13 +1,13 @@
 using TestScenario = Microsoft.CodeAnalysis.CSharp.Testing.CSharpCodeFixTest<
-    fl3pp.Analyzers.TrailingWhitespace.TrailingWhitespaceAnalyzer,
-    fl3pp.Analyzers.TrailingWhitespace.TrailingWhitespace,
+    fl3pp.Analyzers.Whitespace.TrailingWhitespace.TrailingWhitespaceAnalyzer,
+    fl3pp.Analyzers.Whitespace.TrailingWhitespace.TrailingWhitespace,
     Microsoft.CodeAnalysis.Testing.DefaultVerifier>;
 using Verifier = Microsoft.CodeAnalysis.CSharp.Testing.CSharpCodeFixVerifier<
-    fl3pp.Analyzers.TrailingWhitespace.TrailingWhitespaceAnalyzer,
-    fl3pp.Analyzers.TrailingWhitespace.TrailingWhitespace,
+    fl3pp.Analyzers.Whitespace.TrailingWhitespace.TrailingWhitespaceAnalyzer,
+    fl3pp.Analyzers.Whitespace.TrailingWhitespace.TrailingWhitespace,
     Microsoft.CodeAnalysis.Testing.DefaultVerifier>;
 
-namespace fl3pp.Analyzers.Tests;
+namespace fl3pp.Analyzers.Tests.Whitespace;
 
 public sealed class TrailingWhitespaceTests
 {

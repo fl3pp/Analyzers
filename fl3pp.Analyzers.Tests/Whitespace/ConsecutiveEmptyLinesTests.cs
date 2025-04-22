@@ -1,13 +1,13 @@
 using TestScenario = Microsoft.CodeAnalysis.CSharp.Testing.CSharpCodeFixTest<
-    fl3pp.Analyzers.ConsecutiveEmptyLines.ConsecutiveEmptyLines,
-    fl3pp.Analyzers.ConsecutiveEmptyLines.RemoveConsecutiveEmptyLinesFixer,
+    fl3pp.Analyzers.Whitespace.ConsecutiveEmptyLines.ConsecutiveEmptyLines,
+    fl3pp.Analyzers.Whitespace.ConsecutiveEmptyLines.RemoveConsecutiveEmptyLinesFixer,
     Microsoft.CodeAnalysis.Testing.DefaultVerifier>;
 using Verifier = Microsoft.CodeAnalysis.CSharp.Testing.CSharpCodeFixVerifier<
-    fl3pp.Analyzers.ConsecutiveEmptyLines.ConsecutiveEmptyLines,
-    fl3pp.Analyzers.ConsecutiveEmptyLines.RemoveConsecutiveEmptyLinesFixer,
+    fl3pp.Analyzers.Whitespace.ConsecutiveEmptyLines.ConsecutiveEmptyLines,
+    fl3pp.Analyzers.Whitespace.ConsecutiveEmptyLines.RemoveConsecutiveEmptyLinesFixer,
     Microsoft.CodeAnalysis.Testing.DefaultVerifier>;
 
-namespace fl3pp.Analyzers.Tests;
+namespace fl3pp.Analyzers.Tests.Whitespace;
 
 public sealed class ConsecutiveEmptyLinesTests
 {

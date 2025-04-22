@@ -1,6 +1,6 @@
 using Microsoft.CodeAnalysis;
 
-namespace fl3pp.Analyzers.ConsecutiveEmptyLines;
+namespace fl3pp.Analyzers.Whitespace.ConsecutiveEmptyLines;
 
 internal static class ConsecutiveEmptyLinesDiagnostic
 {
