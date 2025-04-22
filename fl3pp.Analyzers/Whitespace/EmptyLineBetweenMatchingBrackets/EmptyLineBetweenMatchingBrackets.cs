@@ -61,7 +61,9 @@ public sealed class EmptyLineBetweenMatchingBrackets : DiagnosticAnalyzer
                 descriptor:EmptyLineBetweenMatchingBracketsDiagnostic.Descriptor,
                 location:Location.Create(
                     context.Node.SyntaxTree,
-                    TextSpan.FromBounds(lineToCheck.TextLine.Span.End, nextNonEmptyLine.TextLine.Span.Start)),
+                    TextSpan.FromBounds(
+                        lineToCheck.TextLine.Span.End,
+                        bracketLines[nextNonEmptyLine.TextLine.LineNumber - 1].TextLine.Span.End)),
                 properties: ImmutableDictionary<string, string?>.Empty,
                 messageArgs: [lineToCheck.TextLine.LineNumber + 2, lineToCheck.ClosingBracket.Value.Character]));
         }

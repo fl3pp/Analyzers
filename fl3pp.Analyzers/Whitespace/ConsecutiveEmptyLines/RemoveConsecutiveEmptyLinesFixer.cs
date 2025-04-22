@@ -15,18 +15,11 @@ public sealed class RemoveConsecutiveEmptyLinesFixer : CodeFixProvider
     
     public override Task RegisterCodeFixesAsync(CodeFixContext context)
     {
-        var diagnostic = context.Diagnostics[0];
-        var spanToDelete = diagnostic.Location.SourceSpan;
-        
         context.RegisterCodeFix(CodeAction.Create(
             ConsecutiveEmptyLinesDiagnostic.RemoveConsecutiveEmptyLinesFixTitle,
-            async ct =>
-            {
-                var withoutEmptyLines = await TriviaCodeActions.RemoveTriviaInSpan(context.Document, spanToDelete, ct);
-                return withoutEmptyLines;
-            },
+            TriviaCodeActions.RemoveDiagnosticSpansFromDocument(context.Document, context.Diagnostics),
             ConsecutiveEmptyLinesDiagnostic.RemoveConsecutiveEmptyLinesFixTitle),
-            diagnostic);
+            context.Diagnostics);
 
         return Task.CompletedTask;
     }

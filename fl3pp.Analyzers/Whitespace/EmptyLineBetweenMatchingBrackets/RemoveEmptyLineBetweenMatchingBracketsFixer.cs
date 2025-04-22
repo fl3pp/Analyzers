@@ -15,21 +15,14 @@ public sealed class RemoveEmptyLineBetweenMatchingBracketsFixer : CodeFixProvide
     
     public override Task RegisterCodeFixesAsync(CodeFixContext context)
     {
-        var diagnostic = context.Diagnostics[0];
-        var spanToDelete = diagnostic.Location.SourceSpan;
-        
         context.RegisterCodeFix(CodeAction.Create(
             EmptyLineBetweenMatchingBracketsDiagnostic.RemoveEmptyLineBetweenMatchingBracketsFixTitle,
-            async ct =>
-            {
-                var withoutEmptyLines = await TriviaCodeActions.RemoveTriviaInSpan(context.Document, spanToDelete, ct);
-                return withoutEmptyLines;
-            },
+            TriviaCodeActions.RemoveSpansFromDocument(context.Document, context.Diagnostics
+                .Select(diagnostic => diagnostic.Location.SourceSpan)
+                .ToImmutableArray()),
             EmptyLineBetweenMatchingBracketsDiagnostic.RemoveEmptyLineBetweenMatchingBracketsFixTitle),
-            diagnostic);
+            context.Diagnostics);
 
         return Task.CompletedTask;
     }
-    
-    public const string RemoveConsecutiveEmptyLinesFixTitle = "Remove empty lines between matching brackets";
 }

@@ -1,10 +1,11 @@
+using Microsoft.CodeAnalysis.Testing;
 using TestScenario = Microsoft.CodeAnalysis.CSharp.Testing.CSharpCodeFixTest<
     fl3pp.Analyzers.Whitespace.TrailingWhitespace.TrailingWhitespaceAnalyzer,
-    fl3pp.Analyzers.Whitespace.TrailingWhitespace.TrailingWhitespace,
+    fl3pp.Analyzers.Whitespace.TrailingWhitespace.RemoveTrailingWhitespace,
     Microsoft.CodeAnalysis.Testing.DefaultVerifier>;
 using Verifier = Microsoft.CodeAnalysis.CSharp.Testing.CSharpCodeFixVerifier<
     fl3pp.Analyzers.Whitespace.TrailingWhitespace.TrailingWhitespaceAnalyzer,
-    fl3pp.Analyzers.Whitespace.TrailingWhitespace.TrailingWhitespace,
+    fl3pp.Analyzers.Whitespace.TrailingWhitespace.RemoveTrailingWhitespace,
     Microsoft.CodeAnalysis.Testing.DefaultVerifier>;
 
 namespace fl3pp.Analyzers.Tests.Whitespace;
@@ -68,6 +69,8 @@ public sealed class TrailingWhitespaceTests
         test.ExpectedDiagnostics.Add(Verifier.Diagnostic()
             .WithSpan(1, 15, 1, 16).WithArguments("1"));
         test.FixedCode = "class Test { }";
+        test.CodeFixTestBehaviors = CodeFixTestBehaviors.SkipFixAllInSolutionCheck
+                                    | CodeFixTestBehaviors.SkipFixAllInProjectCheck;
 
         await test.RunAsync();
     }
@@ -108,7 +111,7 @@ public sealed class TrailingWhitespaceTests
     }
     
     [Fact]
-    public async Task AnalyzeAndFix_TrailingWhitespaceOnMultipleLines_ReportsMultipleDiagnosticsAndRemovesWhitespaceInBatchFix()
+    public async Task AnalyzeAndFix_TrailingWhitespaceOnMultipleLines_ReportsMultipleDiagnosticsAndRemovesWhitespaceInSingleFix()
     {
         var test = new TestScenario();
         test.TestCode =
@@ -151,6 +154,27 @@ public sealed class TrailingWhitespaceTests
             """
             namespace Test;
             
+            class Test { }
+            """;
+
+        await test.RunAsync();
+    }
+    
+    [Fact]
+    public async Task AnalyzeAndFix_TrailingWhitespaceInXmlDoc_RemovesWhitespace()
+    {
+        var test = new TestScenario();
+        test.TestCode =
+            """
+            /// <summary></summary> 
+            class Test { }
+            """;
+        
+        test.ExpectedDiagnostics.Add(Verifier.Diagnostic()
+            .WithSpan(1, 24, 1, 25).WithArguments("1"));
+        test.FixedCode =
+            """
+            /// <summary></summary>
             class Test { }
             """;
 

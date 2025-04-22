@@ -58,7 +58,7 @@ public sealed class EmptyLineBetweenMatchingBracketsTests
             """;
         
         test.ExpectedDiagnostics.Add(Verifier.Diagnostic()
-            .WithSpan(6, 6, 8, 1).WithArguments("7", "}"));
+            .WithSpan(6, 6, 7, 5).WithArguments("7", "}"));
         test.FixedCode =
             """
             namespace TestNamespace
@@ -91,7 +91,7 @@ public sealed class EmptyLineBetweenMatchingBracketsTests
             """;
         
         test.ExpectedDiagnostics.Add(Verifier.Diagnostic()
-            .WithSpan(6, 6, 9, 1).WithArguments("7", "}"));
+            .WithSpan(6, 6, 8, 5).WithArguments("7", "}"));
         test.FixedCode =
             """
             namespace TestNamespace
@@ -121,7 +121,7 @@ public sealed class EmptyLineBetweenMatchingBracketsTests
             """;
         
         test.ExpectedDiagnostics.Add(Verifier.Diagnostic()
-            .WithSpan(3, 17, 5, 1).WithArguments("4", ")"));
+            .WithSpan(3, 17, 4, 5).WithArguments("4", ")"));
         test.FixedCode =
             """
             class test
@@ -152,7 +152,7 @@ public sealed class EmptyLineBetweenMatchingBracketsTests
             """;
         
         test.ExpectedDiagnostics.Add(Verifier.Diagnostic()
-            .WithSpan(6, 10, 8, 1).WithArguments("7", "}"));
+            .WithSpan(6, 10, 7, 9).WithArguments("7", "}"));
         test.FixedCode =
             """
             class test
