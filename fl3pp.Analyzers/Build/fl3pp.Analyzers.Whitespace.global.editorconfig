@@ -1,0 +1,6 @@
+is_global = true
+
+dotnet_diagnostic.FL30001.severity = warning
+dotnet_diagnostic.FL30002.severity = warning
+dotnet_diagnostic.FL30003.severity = warning
+dotnet_diagnostic.FL30004.severity = warning

@@ -13,12 +13,24 @@ A collection of analyzers I wished existed but didn't yet (or did, but in a form
 To install the analyzers, add the NuGet package to your `.csproj`:
 
 ```xml
-<PackageReference Include="fl3pp.Analyzers" Version="0.0.2" PrivateAssets="all" />
+<ItemGroup>
+  <PackageReference Include="fl3pp.Analyzers" Version="0.0.3" PrivateAssets="all" />
+</ItemGroup>
 ```
 
-Note that all analyzers are disabled by default. You'll have to enable the ones you need in your [`.editorconfig`](https://learn.microsoft.com/en-us/visualstudio/code-quality/use-roslyn-analyzers?view=vs-2022#set-rule-severity-in-an-editorconfig-file) file.
+Note that all analyzers are disabled by default. You have two options to enable them:
 
-Use a [`Directory.Build.props`](https://learn.microsoft.com/en-us/visualstudio/msbuild/customize-by-directory?view=vs-2022#directorybuildprops-and-directorybuildtargets) to enable the analyzers for all projects in a directory.
+- In your [`.editorconfig`](https://learn.microsoft.com/en-us/visualstudio/code-quality/use-roslyn-analyzers?view=vs-2022#set-rule-severity-in-an-editorconfig-file) files
+- Through these MSBuild properties:
+
+```xml
+<PropertyGroup>
+  <EnableFl3ppAnalyzers>true</EnableFl3ppAnalyzers>
+  <EnableFl3ppWhitespaceAnalyzers>true</EnableFl3ppWhitespaceAnalyzers>
+</PropertyGroup>
+```
+
+Alternatively, you can use a [`Directory.Build.props`](https://learn.microsoft.com/en-us/visualstudio/msbuild/customize-by-directory?view=vs-2022#directorybuildprops-and-directorybuildtargets) to include the analyzers for all projects in a directory.
 
 ## Whitespace Analyzers
 

@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <NuspecFile>fl3pp.Analyzers.nuspec</NuspecFile>
-    <NuspecBasePath>$(ArtifactsPath)</NuspecBasePath>
+    <NuspecBasePath>$(MSBuildThisFileDirectory)..</NuspecBasePath>
   </PropertyGroup>
 
   <PropertyGroup>
