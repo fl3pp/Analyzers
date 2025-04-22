@@ -11,27 +11,22 @@ namespace fl3pp.Analyzers.Tests.Whitespace;
 
 public sealed class ConsecutiveEmptyLinesTests
 {
-    [Fact]
-    public async Task AnalyzeAndFix_TwoEmptyLinesInClassDeclaration_ReportsDiagnosticAndRemovesOneEmptyLine()
+    [Theory]
+    [InlineData("\r\n")]
+    [InlineData("\n")]
+    public async Task AnalyzeAndFix_TwoEmptyLinesInClassDeclarationWithVariousNewlines_ReportsDiagnosticAndRemovesOneEmptyLine(string newLine)
     {
         var test = new TestScenario();
         test.TestCode =
-            """
-            class Test
-            {
-            
-            
-            }
+            $$"""
+            class Test{{newLine}}{{{newLine}}{{newLine}}{{newLine}}}
             """;
 
         test.ExpectedDiagnostics.Add(Verifier.Diagnostic()
             .WithSpan(3, 1, 4, 1).WithArguments("3", "4"));
         test.FixedCode =
-            """
-            class Test
-            {
-            
-            }
+            $$"""
+            class Test{{newLine}}{{{newLine}}{{newLine}}}
             """;
 
         await test.RunAsync();

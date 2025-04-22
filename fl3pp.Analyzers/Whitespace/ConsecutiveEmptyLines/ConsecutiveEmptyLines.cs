@@ -37,7 +37,7 @@ public sealed class ConsecutiveEmptyLines : DiagnosticAnalyzer
 
         foreach (var line in emptyLines.Skip(1))
         {
-            if (possibleDiagnostics.Peek().Last().End + 1 == line.Span.Start)
+            if (possibleDiagnostics.Peek().Last().LineNumber + 1 == line.LineNumber)
                 possibleDiagnostics.Peek().Add(line);
             else
                 possibleDiagnostics.Push(new([line]));
