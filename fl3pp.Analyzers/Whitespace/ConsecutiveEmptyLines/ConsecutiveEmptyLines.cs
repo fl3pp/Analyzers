@@ -57,8 +57,8 @@ public sealed class ConsecutiveEmptyLines : DiagnosticAnalyzer
                         lastLine.Span.End)),
                 messageArgs: [firstLine.LineNumber + 1, lastLine.LineNumber + 1],
                 properties: ImmutableDictionary<string, string?>.Empty
-                    .Add(TriviaCodeActions.SpanStartOverrideKey, firstLine.Span.Start.ToString())
-                    .Add(TriviaCodeActions.SpanEndOverrideKey, lastLine.Span.End.ToString())));
+                    .Add(TriviaCodeActionsPropertyKeys.SpanStartOverride, firstLine.Span.Start.ToString())
+                    .Add(TriviaCodeActionsPropertyKeys.SpanEndOverride, lastLine.Span.End.ToString())));
         }
     }
 }

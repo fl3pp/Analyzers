@@ -4,20 +4,25 @@ using Microsoft.CodeAnalysis.Text;
 
 namespace fl3pp.Analyzers.Whitespace;
 
+internal static class TriviaCodeActionsPropertyKeys
+{
+    public const string SpanStartOverride = "SpanStartOverride";
+    public const string SpanEndOverride = "SpanEndOverride";
+}
+
 internal static class TriviaCodeActions
 {
-    public const string SpanStartOverrideKey = "SpanStartOverride";
-    public const string SpanEndOverrideKey = "SpanEndOverride";
-    
     public static Func<CancellationToken, Task<Document>> RemoveDiagnosticSpansFromDocument(
         Document document,
         ImmutableArray<Diagnostic> diagnostics)
     {
         TextSpan GetSpanFromDiagnostic(Diagnostic diagnostic)
         {
-            var start = diagnostic.Properties.TryGetValue(SpanStartOverrideKey, out var startValue)
+            var start = diagnostic.Properties.TryGetValue(
+                TriviaCodeActionsPropertyKeys.SpanStartOverride, out var startValue)
                 ? int.Parse(startValue!) : diagnostic.Location.SourceSpan.Start;
-            var end = diagnostic.Properties.TryGetValue(SpanEndOverrideKey, out var endValue)
+            var end = diagnostic.Properties.TryGetValue(
+                TriviaCodeActionsPropertyKeys.SpanEndOverride, out var endValue)
                 ? int.Parse(endValue!) : diagnostic.Location.SourceSpan.End;
             return TextSpan.FromBounds(start, end);
         }
