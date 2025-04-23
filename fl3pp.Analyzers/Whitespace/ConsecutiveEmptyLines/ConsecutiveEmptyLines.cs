@@ -52,9 +52,13 @@ public sealed class ConsecutiveEmptyLines : DiagnosticAnalyzer
                 descriptor: ConsecutiveEmptyLinesDiagnostic.Descriptor,
                 location: Location.Create(
                     node.SyntaxTree,
-                    TextSpan.FromBounds(firstLine.Span.Start, lastLine.Span.End)),
-                properties: ImmutableDictionary<string, string?>.Empty,
-                messageArgs: [firstLine.LineNumber + 1, lastLine.LineNumber + 1]));
+                    TextSpan.FromBounds(
+                        text.Lines[Math.Max(0, firstLine.LineNumber - 1)].Span.End,
+                        lastLine.Span.End)),
+                messageArgs: [firstLine.LineNumber + 1, lastLine.LineNumber + 1],
+                properties: ImmutableDictionary<string, string?>.Empty
+                    .Add(TriviaCodeActions.SpanStartOverrideKey, firstLine.Span.Start.ToString())
+                    .Add(TriviaCodeActions.SpanEndOverrideKey, lastLine.Span.End.ToString())));
         }
     }
 }
