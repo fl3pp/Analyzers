@@ -1,6 +1,6 @@
 <Project>
   <ItemGroup>
-    <GlobalAnalyzerConfigFiles Include="$(MSBuildThisFileDirectory)\fl3pp.Analyzers.Whitespace.global.editorconfig"
-                               Condition="'$(EnableFl3ppAnalyzers)' == 'true' Or '$(EnableFl3ppWhitespaceAnalyzers)' == 'true'" />
+    <EditorConfigFiles Include="$(MSBuildThisFileDirectory)\fl3pp.Analyzers.Whitespace.global.editorconfig"
+                       Condition="'$(EnableFl3ppAnalyzers)' == 'true' Or '$(EnableFl3ppWhitespaceAnalyzers)' == 'true'" />
   </ItemGroup>
 </Project>
