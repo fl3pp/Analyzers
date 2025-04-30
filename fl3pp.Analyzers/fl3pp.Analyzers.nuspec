@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>fl3pp.Analyzers</id>
-        <version>0.0.3-pre2</version>
+        <version>0.0.4-pre1</version>
         <description>A collection of various analyzers.</description>
         <authors>fl3pp</authors>
         <license type="expression">MIT</license>
