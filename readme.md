@@ -16,7 +16,7 @@ To install the analyzers, add the NuGet package to your `.csproj`:
 
 ```xml
 <ItemGroup>
-  <PackageReference Include="fl3pp.Analyzers" Version="0.0.4-pre1" PrivateAssets="all" />
+  <PackageReference Include="fl3pp.Analyzers" Version="0.0.4" PrivateAssets="all" />
 </ItemGroup>
 ```
 
